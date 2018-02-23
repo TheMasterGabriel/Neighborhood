@@ -18,7 +18,7 @@ require 'securerandom'
 
 valid, c = Open3.capture2('gem list bundler -i')
 
-abort('Neighborhood requires the Bundler gem to be installed. Yet, Gemfile.lock exists! Stop playing around...') if valid != 'true'
+abort('Neighborhood requires the Bundler gem to be installed. Yet, Gemfile.lock exists! Stop playing around...') if valid.strip != 'true'
 puts '[Neighborhood] Installing the cross-platform neighborhood watch...'
 puts '  - Fetching git hook...'
 

@@ -3,15 +3,15 @@ def colorize(text, color_code)
 end
 
 MESSAGES = [
-    "Cidney, how many times must I tell you not to park infront of the fire hydrant...",
-    "Dylan, I hope you're not skipping school...",
-    "Remember, trash cans should not block your driveways...",
-    "Marshall, please do not leafblow between 5PM and 9AM..."
+    "Cidney, how many times must I tell you not to park infront of the fire hydrant...".freeze,
+    "Dylan, I hope you're not skipping school...".freeze,
+    "Remember, trash cans should not block your driveways...".freeze,
+    "Marshall, please do not leafblow between 5PM and 9AM...".freeze
 ]
 
 begin
     puts
-    puts "[Neighborhood] #{MESSAGES.sample(1)[0]}"
+    puts "[Neighborhood] #{MESSAGES.sample(1)[0]}".freeze
     platforms = (`bundle platform`.gsub(/\s+|ruby/, '').split(/:|Your/)[4][2..-1] || "").split('*')
     
     if platforms.none?
@@ -19,7 +19,7 @@ begin
         exit!(0)
     end
 
-    puts "  - Harboring some platform-specific gems (#{platforms.join(', ')})? I'll have to confiscate those...."
+    puts "  - Harboring some platform-specific gems (#{platforms.join(', ')})? I'll have to confiscate those....".freeze
 
     platforms.each do |platform|
         `bundle lock --local --remove-platform=#{platform}`
