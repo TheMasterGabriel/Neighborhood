@@ -25,8 +25,14 @@ begin
         `bundle lock --local --remove-platform=#{platform}`
     end
 
+    require 'tmpdir'
+    require 'digest'
+    require 'securerandom'
+
     puts "  - Notifying git of the changes..."
-    `git add Gemfile.lock`
+    temp = [Dir.tmpdir(), '/', Digest::MD5.hexdigest(SecureRandom.uuid)].join
+    `git add Gemfile.lock > #{temp}`
+    File.delete(temp)
     puts "  - Successfully removed all platform specific gems.... Alright, move along."
     exit!(0)
 rescue Exception => e
