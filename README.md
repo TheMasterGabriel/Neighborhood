@@ -16,7 +16,7 @@ If you are on Windows, you might get an error stating `curl : The response conte
 
 ## What does this do?
 
-While this project is ever-expanding as new discrepencies are found, this script does a few things to start with:
+This project is ever-expanding, and will continue as new discrepancies are found, but as of now this script does a few simple things:
     
 1. Adds the `ruby` platform to your Gemfile
 2. Adds a client-side pre-commit git hook to your repository that removes all non-ruby platform-specific gems. This is usually only necessary on non-*nix systems.
