@@ -23,6 +23,7 @@ puts '[Neighborhood] Installing the cross-platform neighborhood watch...'
 puts '  - Enabling LF line ending normalization via git attributes...'
 
 File.open('.gitattributes', 'a') do |f|
+    f.puts('# Auto detect text files and perform LF normalization')
     f.puts('* text=auto eol=lf')
 end
 
