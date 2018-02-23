@@ -18,5 +18,6 @@ If you are on Windows, you might get an error stating `curl : The response conte
 
 This project is ever-expanding, and will continue as new discrepancies are found, but as of now this script does a few simple things:
     
-1. Adds the `ruby` platform to your Gemfile
+1. Adds the `ruby` platform to your Gemfile.
+3. Enables LF line ending normalization on your .gitattributes file, creating one if it does not exist already.
 2. Adds a client-side pre-commit git hook to your repository that removes all non-ruby platform-specific gems. This is usually only necessary on non-*nix systems.
