@@ -19,6 +19,7 @@ require 'securerandom'
 valid, c = Open3.capture2('gem list bundler -i')
 
 abort('Neighborhood requires the Bundler gem to be installed. Yet, Gemfile.lock exists! Stop playing around...') if valid.strip != 'true'
+puts
 puts '[Neighborhood] Installing the cross-platform neighborhood watch...'
 puts '  - Fetching git hook...'
 
@@ -40,7 +41,7 @@ File.open('.git/hooks/pre-commit', 'w') do |f|
 end
 
 puts '  - Git hook installed successfully!'
-puts '  - Configuring your Gemlock.file for cross-platform development...'
+puts '  - Configuring your Gemlock.file for cross-platform development - this might take a hot second...'
 
 Open3.capture2('bundle lock --add-platform=ruby')
 
