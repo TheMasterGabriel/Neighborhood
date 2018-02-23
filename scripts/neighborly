@@ -25,6 +25,8 @@ begin
         `bundle lock --local --remove-platform=#{platform}`
     end
 
+    puts "  - Notifying git of the changes..."
+    `git add Gemfile.lock`
     puts "  - Successfully removed all platform specific gems.... Alright, move along."
     exit!(0)
 rescue Exception => e
