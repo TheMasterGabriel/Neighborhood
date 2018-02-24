@@ -10,7 +10,7 @@ MESSAGES = [
 ]
 
 begin
-    if `git rev-parse --is-inside-work-tree`.strip! != 'true
+    if `git rev-parse --is-inside-work-tree`.strip! != 'true'
         puts "The pre-commit hook's working directory has been altered! Neighborhood cannot function."
         puts
         exit!(1)
