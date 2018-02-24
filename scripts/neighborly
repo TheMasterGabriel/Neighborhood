@@ -10,16 +10,32 @@ MESSAGES = [
 ]
 
 begin
+    if `git rev-parse --is-inside-work-tree`.strip! != 'true
+        puts "The pre-commit hook's working directory has been altered! Neighborhood cannot function."
+        puts
+        exit!(1)
+    end
+
     puts
     puts "[Neighborhood] #{MESSAGES.sample(1)[0]}".freeze
-    platforms = (`bundle platform`.gsub(/\s+|ruby/, '').split(/:|Your/)[4][2..-1] || "").split('*')
+    puts "  - Scanning Gemlock file for bad gems...".freeze
+    platforms = nil
+
+    IO.foreach('Gemfile.lock') do |line|
+        line.strip!
+        valid = !platforms.nil?
+        break if valid && line.empty?
+        platforms << line if valid && line != 'ruby'
+        platforms = [] if line === 'PLATFORMS'
+    end
     
     if platforms.none?
-        puts "  - Your Gemfile.lock does not contain any platform-specific gems.... Move along."
+        puts "  - Your Gemfile.lock does not contain any platform-specific gems. Move along."
+        puts
         exit!(0)
     end
 
-    puts "  - Harboring some platform-specific gems (#{platforms.join(', ')})? I'll have to confiscate those....".freeze
+    puts "  - Harboring some platform-specific gems for #{platforms.join(', ')}? I'll have to confiscate those....".freeze
 
     platforms.each do |platform|
         `bundle lock --local --remove-platform=#{platform}`
@@ -30,10 +46,9 @@ begin
     require 'securerandom'
 
     puts "  - Notifying git of the changes..."
-    temp = [Dir.tmpdir(), '/', Digest::MD5.hexdigest(SecureRandom.uuid)].join
-    `git add Gemfile.lock > #{temp}`
-    File.delete(temp)
-    puts "  - Successfully removed all platform specific gems.... Alright, move along."
+    `git add Gemfile.lock`
+    puts "  - Successfully removed all platform specific gems. Alright, move along."
+    puts
     exit!(0)
 rescue Exception => e
     print "\r" << (' ' * 50) << "\n"
@@ -49,7 +64,8 @@ rescue Exception => e
         line
     end
 
-    puts "An error occured during hall monitoring...:\n"
+    puts "An error occured during street patrol:\n"
     stacktrace.each { |line| puts line }
+    puts
     exit!(1)
 end

@@ -1,6 +1,6 @@
 # Neighborhood
 
-A set of simple scripts to help maintain compatabilty of a ruby project across development platforms. Collaborative, open-source projects are fantastic, but fundementally limiting. There is a tendancy in programming to simply ignore Unix-unlike systems, primarily Windows. A project cannot be truly collaborative without supporting _all_ those who want to collaborate. What Fred Rogers believed and instilled in children, applied to software development.
+A set of simple scripts to help maintain compatibility of a ruby project across development platforms. Collaborative, open-source projects are fantastic, but fundementally limiting. There is a tendancy in programming to simply ignore Unix-unlike systems, primarily Windows. A project cannot be truly collaborative without supporting _all_ those who want to collaborate. What Fred Rogers believed and instilled in children, applied to software development.
 
 > _"I like you just the way you are"._ - Fred Rogers
 
