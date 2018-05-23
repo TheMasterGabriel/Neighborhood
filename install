@@ -29,7 +29,7 @@ end
 
 puts '  - Fetching git hook...'
 hook = [Dir.tmpdir(), '/', Digest::MD5.hexdigest(SecureRandom.uuid), '.rb'].join
-IO.copy_stream(open('https://raw.githubusercontent.com/TheMasterGabriel/Neighborhood/master/scripts/gemlock_purge'), hook)
+IO.copy_stream(open('https://raw.githubusercontent.com/thearchitector/Neighborhood/master/scripts/gemlock_purge'), hook)
 
 puts '  - Configuring the hook to your system...'
 config = RbConfig::CONFIG
