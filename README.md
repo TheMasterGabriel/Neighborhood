@@ -15,13 +15,13 @@ A set of simple scripts to help maintain compatibility of a ruby project across 
 For every ruby project you want to enforce cross-platform standards upon, run this command in the project's root directory:
 
 ```sh
-    ruby -e "$(curl https://tinyurl.com/install-neighborhood)"
+    ruby -e "$(curl https://raw.githubusercontent.com/thearchitector/Neighborhood/master/install)"
 ```
 
 If you are on Windows, you might get an error stating `curl : The response content cannot be parsed because the Internet Explorer engine is not available.` If you do get this error, add `-UseBasicParsing` as a flag option for the curl command like so:
 
 ```sh
-    ruby -e "$(curl -UseBasicParsing https://tinyurl.com/install-neighborhood)"
+    ruby -e "$(curl -UseBasicParsing https://raw.githubusercontent.com/thearchitector/Neighborhood/master/install)"
 ```
 
 ## What does this do?
