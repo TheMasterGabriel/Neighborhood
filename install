@@ -45,6 +45,21 @@ File.open('.git/hooks/pre-commit', 'w') do |f|
 end
 
 puts '  - Git hook installed successfully!'
+capistrano_installed = Gem.loaded_specs.has_key?('capistrano')
+
+if !capistrano_installed
+    puts '  - Fetching Capistrano deploy hook...'
+    IO.copy_stream(open('https://raw.githubusercontent.com/thearchitector/Neighborhood/master/scripts/capistrano_pre-deploy.rake'), 'lib/capistrano/tasks/gemlock_clean.rake')
+
+    puts '  - Configuring deployment flow...'
+    File.open('config/deploy.rb', 'a') do |f|
+        f.puts('')
+        f.puts('before :deploy, neighborhood:clean')
+    end
+
+    puts '  - Capistrano pre-deploy hook installed successfully!'
+end
+
 puts '  - Configuring your Gemlock.file for cross-platform development - this might take a hot second...'
 Open3.capture2('bundle lock --add-platform=ruby')
 puts '  - Successfully added the ruby platform to your Gemfile.lock...'
